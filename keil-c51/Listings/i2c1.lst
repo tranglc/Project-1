@@ -1,0 +1,99 @@
+C51 COMPILER V9.59.0.0   I2C1                                                              05/20/2019 08:42:27 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE I2C1
+OBJECT MODULE PLACED IN .\Objects\i2c1.obj
+COMPILER INVOKED BY: D:\Program Files\Keil-C51\C51\BIN\C51.EXE i2c1.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(
+                    -.\Listings\i2c1.lst) TABS(2) OBJECT(.\Objects\i2c1.obj)
+
+line level    source
+
+   1          #include"delay.h"
+   2          #include"i2c1.h"
+   3          
+   4          void I2C_Init1(){
+   5   1        SCL1=1;
+   6   1        SDA1=1;
+   7   1      }
+   8          static void I2C_Clock(){
+   9   1        us_Delay(1);
+  10   1        SCL1=1;
+  11   1        us_Delay(1);
+  12   1        SCL1=0;
+  13   1      }
+  14          //static void I2C_ACK(){
+  15          //  SDA1=0;
+  16          //  I2C_Clock();
+  17          //  SDA1=1;
+  18          //}
+  19          //static void I2C_NACK(){
+  20          //  SDA1=1;
+  21          //  I2C_Clock();
+  22          //  SCL1=1;
+  23          //}
+  24          void I2C_Start1(){
+  25   1        SCL1=0;
+  26   1        SDA1=1;
+  27   1        us_Delay(1);
+  28   1        SCL1=1;
+  29   1        us_Delay(1);
+  30   1        SDA1=0;
+  31   1        us_Delay(1);
+  32   1        SCL1=0;
+  33   1      }
+  34          void I2C_Stop1(){
+  35   1        SCL1=0;
+  36   1        us_Delay(1);
+  37   1        SDA1=0;
+  38   1        us_Delay(1);
+  39   1        SCL1=1;
+  40   1        us_Delay(1);
+  41   1        SDA1=1;
+  42   1      }
+  43            
+  44          void I2C_Write1(unsigned char data_source){
+  45   1        unsigned char i;
+  46   1        for(i=0;i<8;i++){
+  47   2          SDA1=data_source&0x80;
+  48   2          I2C_Clock();
+  49   2          data_source=data_source<<1;
+  50   2        }
+  51   1        I2C_Clock();
+  52   1      }
+  53          //unsigned char I2C_Read1(unsigned char ack){
+  54          //  unsigned char i,dat=0x00;
+C51 COMPILER V9.59.0.0   I2C1                                                              05/20/2019 08:42:27 PAGE 2   
+
+  55          //  SDA1=1;
+  56          //  for(i=0;i<8;i++){
+  57          //    us_Delay(1);
+  58          //    SCL1=1;
+  59          //    us_Delay(1);
+  60          //    dat=dat<<1;
+  61          //    dat=dat|SDA1;
+  62          //    SCL1=0;
+  63          //  }
+  64          //  if(ack==1){
+  65          //    I2C_ACK();
+  66          //  }else{
+  67          //    I2C_NACK();
+  68          //  }
+  69          //  return dat;
+  70          //}
+  71          
+  72          
+  73          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    123    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

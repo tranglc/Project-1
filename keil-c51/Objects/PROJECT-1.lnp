@@ -1,0 +1,9 @@
+".\Objects\delay.obj",
+".\Objects\i2c.obj",
+".\Objects\lcd.obj",
+".\Objects\source.obj",
+".\Objects\uart.obj",
+".\Objects\BH-1750.obj",
+".\Objects\i2c1.obj" 
+TO ".\Objects\PROJECT-1" 
+PRINT(".\Listings\PROJECT-1.m51") RAMSIZE(256) 
